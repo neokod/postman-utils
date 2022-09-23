@@ -1,6 +1,6 @@
 package com.neokod.postman.constant;
 
-public class PostmanConstants {
+public class FileVariableConstants {
 
     public static final String ENV_VARIABLE_PREFIX = "\\{\\{";
 

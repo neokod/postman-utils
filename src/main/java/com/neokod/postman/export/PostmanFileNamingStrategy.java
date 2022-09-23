@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
-import static com.neokod.postman.constant.PostmanConstants.*;
+import static com.neokod.postman.constant.FileVariableConstants.*;
 
 @Component
 public class PostmanFileNamingStrategy {

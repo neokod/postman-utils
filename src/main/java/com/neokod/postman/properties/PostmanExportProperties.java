@@ -1,15 +1,16 @@
 package com.neokod.postman.properties;
 
+import com.neokod.postman.constant.PostmanUtilConstants;
+import com.neokod.postman.enums.EnumExportDetailStrategy;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "neokod.postman.export")
+@ConfigurationProperties(prefix = PostmanUtilConstants.EXPORT_PROPERTIES_PREFIX)
 public class PostmanExportProperties {
 
-    public enum EnumExportDetailStrategy {SUCCESS_ONLY, ALL}
-
     private EnumExportDetailStrategy responseSelection;
+
     private boolean useResponseNameInFile;
     private String basePath;
     private String fileNameSeparator;

@@ -1,12 +1,13 @@
 package com.neokod.postman.properties;
 
+import com.neokod.postman.constant.PostmanUtilConstants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-@ConfigurationProperties(prefix = "neokod.postman.parse")
+@ConfigurationProperties(prefix = PostmanUtilConstants.PARSE_PROPERTIES_PREFIX)
 public class PostmanParsingProperties {
 
     private String filePath;

@@ -8,8 +8,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Map;
 
-import static com.neokod.postman.constant.PostmanConstants.ENV_VARIABLE_PREFIX;
-import static com.neokod.postman.constant.PostmanConstants.ENV_VARIABLE_SUFFIX;
+import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_PREFIX;
+import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_SUFFIX;
 
 public class PostmanUrlEnvVariableReplace implements RequestItemFormat {
 

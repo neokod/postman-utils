@@ -4,13 +4,12 @@ import com.neokod.postman.data.PostmanHeader;
 import com.neokod.postman.data.PostmanRequestItem;
 import com.neokod.postman.data.PostmanUrl;
 import com.neokod.postman.env.PostmanEnvVariableManager;
-import com.neokod.postman.util.PostmanUrls;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Map;
 
-import static com.neokod.postman.constant.PostmanConstants.ENV_VARIABLE_PREFIX;
-import static com.neokod.postman.constant.PostmanConstants.ENV_VARIABLE_SUFFIX;
+import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_PREFIX;
+import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_SUFFIX;
 
 public class PostmanHeaderEnvVariableReplace implements RequestItemFormat {
 

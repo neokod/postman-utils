@@ -16,7 +16,7 @@ import org.springframework.util.CollectionUtils;
 import java.io.File;
 import java.io.IOException;
 
-import static com.neokod.postman.constant.PostmanConstants.SUCCESS_RESPONSE_NAME;
+import static com.neokod.postman.constant.FileVariableConstants.SUCCESS_RESPONSE_NAME;
 
 @Component
 public class PostmanCollectionExporter {
