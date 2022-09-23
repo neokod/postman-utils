@@ -1,0 +1,57 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: ${SERVER_CONTEXT_PATH:}
+
+logging:
+  level:
+    org:
+      springframework:
+        jms: INFO
+        context: DEBUG
+        web: INFO
+        security: INFO
+        kafka: INFO
+      hibernate:
+        SQL: DEBUG
+        type: trace
+      apache:
+        kafka:
+          clients: WARN
+neokod:
+  postman:
+    parse:
+      filePath: /Users/mertarisoy/Downloads/Einsan2.2.postman_collection.json
+    environment:
+      filePath: /Users/mertarisoy/Downloads/einsan_postman_environment.json
+    export:
+      responseSelection: ALL
+      basePath: /Users/mertarisoy/Workspace/jsonlar/
+      fileNameSeparator: _
+      useResponseNameInFile: false
+
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      unwrap-root-value: false
+  info:
+  app:
+    name: ${spring.application.name}
+    description: ${SERVER_DESCRIPTION:Datalog Spring Demo Server}
+  build:
+    groupId: ${SERVER_BUILD_GROUP_ID:com.datalog}
+    artifact: ${SERVER_BUILD_ARTIFACT:spring-demo-server}
+    name: ${SERVER_BUILD_NAME:Datalog Server Project}
+    version: ${SERVER_BUILD_VERSION:${module.version}
