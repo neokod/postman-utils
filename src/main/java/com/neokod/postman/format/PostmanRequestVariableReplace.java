@@ -1,9 +1,9 @@
 package com.neokod.postman.format;
 
-import com.neokod.postman.data.PostmanRequestItem;
+import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.data.PostmanUrl;
 import com.neokod.postman.data.PostmanVariable;
-import com.neokod.postman.util.PostmanUrls;
+import com.neokod.postman.util.PostmanFormatters;
 import org.springframework.util.CollectionUtils;
 
 public class PostmanRequestVariableReplace implements RequestItemFormat {
@@ -12,8 +12,8 @@ public class PostmanRequestVariableReplace implements RequestItemFormat {
     }
 
     @Override
-    public void format(PostmanRequestItem requestItem) {
-        PostmanUrls.formatAllUrlPartsOfRequest(requestItem, this::formatUrl);
+    public void format(PostmanItem requestItem) {
+        PostmanFormatters.formatAllUrlPartsOfRequest(requestItem, this::formatUrl);
 
     }
 

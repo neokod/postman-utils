@@ -12,12 +12,12 @@ import java.util.Locale;
 import static com.neokod.postman.constant.FileVariableConstants.*;
 
 @Component
-public class PostmanFileNamingStrategy {
+public class PostmanFileNamingManager {
 
     private final PostmanExportProperties exportProperties;
 
     @Autowired
-    public PostmanFileNamingStrategy(PostmanExportProperties exportProperties) {
+    public PostmanFileNamingManager(PostmanExportProperties exportProperties) {
         this.exportProperties = exportProperties;
     }
 
@@ -44,7 +44,7 @@ public class PostmanFileNamingStrategy {
     }
 
     private String formattedNameFromUrl(PostmanUrl postmanUrl) {
-        String formattedFileName = postmanUrl.getRaw();
+        String formattedFileName = postmanUrl.combinedUrlFromPath();
         formattedFileName = formattedFileName.replaceAll(HTTPS_PREFIX, HTTPS_PREFIX_REPLACE);
         formattedFileName = formattedFileName.replaceAll(HTTP_PREFIX, HTTP_PREFIX_REPLACE);
         formattedFileName = formattedFileName.replaceAll(URL_SEPARATOR, exportProperties.getFileNameSeparator());

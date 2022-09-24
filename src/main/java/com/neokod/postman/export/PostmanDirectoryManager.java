@@ -1,6 +1,8 @@
 package com.neokod.postman.export;
 
-import com.neokod.postman.data.PostmanItem;
+import com.neokod.postman.data.PostmanItemWithName;
+import com.neokod.postman.exception.DirectoryCleaningIsFailedException;
+import com.neokod.postman.exception.FileCreationException;
 import com.neokod.postman.properties.PostmanExportProperties;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +21,24 @@ public class PostmanDirectoryManager {
         this.properties = properties;
     }
 
-    public String getOrCreate(String rootPath, PostmanItem item) throws IOException {
-        String newFilePath;
+    public String getOrCreate(String rootPath, PostmanItemWithName item) {
+        String newFilePath = item.getName().replaceAll("-", properties.getFileNameSeparator()).replaceAll("/", properties.getFileNameSeparator());
         if (rootPath == null)
-            newFilePath = properties.getBasePath() + "/" + item.getName().replaceAll("-", properties.getFileNameSeparator());
+            newFilePath = properties.getBasePath() + "/" + newFilePath;
         else
-            newFilePath = rootPath + "/" + item.getItem();
+            newFilePath = rootPath + "/" + newFilePath;
 
         File directoryFile = new File(newFilePath);
         if (directoryFile.exists()) {
             if (!directoryFile.isDirectory())
-                throw new IOException(newFilePath + "  is not a directory");
+                throw new FileCreationException(newFilePath + "  is not a directory");
         } else {
             directoryFile.mkdir();
-            FileUtils.cleanDirectory(directoryFile);
+            try {
+                FileUtils.cleanDirectory(directoryFile);
+            } catch (IOException ioException) {
+                throw new DirectoryCleaningIsFailedException(directoryFile.getPath());
+            }
         }
         return newFilePath;
     }

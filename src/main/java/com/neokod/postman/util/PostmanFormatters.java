@@ -1,13 +1,13 @@
 package com.neokod.postman.util;
 
-import com.neokod.postman.data.PostmanRequestItem;
+import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.data.PostmanResponse;
 import com.neokod.postman.data.PostmanUrl;
 import org.springframework.util.CollectionUtils;
 
-public class PostmanUrls {
+public class PostmanFormatters {
 
-    public static void formatAllUrlPartsOfRequest(PostmanRequestItem requestItem, PostmanUrlFormatter urlFormatter) {
+    public static void formatAllUrlPartsOfRequest(PostmanItem requestItem, PostmanUrlFormatter urlFormatter) {
         urlFormatter.format(requestItem.getRequest().getUrl());
 
         if (!CollectionUtils.isEmpty(requestItem.getResponse())) {

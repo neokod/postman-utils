@@ -1,6 +1,6 @@
 package com.neokod.postman.data;
 
-public interface PostmanNamable {
+public interface PostmanItemWithName {
 
     String getName();
 }

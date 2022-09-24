@@ -3,7 +3,6 @@ package com.neokod.postman.format;
 import com.neokod.postman.context.PostmanContextHolder;
 import com.neokod.postman.data.PostmanCollection;
 import com.neokod.postman.data.PostmanItem;
-import com.neokod.postman.data.PostmanRequestItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -23,7 +22,7 @@ public class PostmanFormatter {
         if(!CollectionUtils.isEmpty(collection.getItem())) {
             for (PostmanItem postmanItem : collection.getItem()) {
                 if(!CollectionUtils.isEmpty(postmanItem.getItem())) {
-                    for(PostmanRequestItem requestItem : postmanItem.getItem()) {
+                    for(PostmanItem requestItem : postmanItem.getItem()) {
                         formatChain.format(requestItem);
                     }
                 }

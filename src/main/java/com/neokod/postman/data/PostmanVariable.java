@@ -3,7 +3,7 @@ package com.neokod.postman.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PostmanVariable {
+public class PostmanVariable implements PostmanKeyValuePair{
 
     private String key;
 

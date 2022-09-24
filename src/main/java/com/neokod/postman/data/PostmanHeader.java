@@ -1,6 +1,6 @@
 package com.neokod.postman.data;
 
-public final class PostmanHeader extends PostmanVariable{
+public final class PostmanHeader extends PostmanVariable {
         private String type;
 
         public String getType() {

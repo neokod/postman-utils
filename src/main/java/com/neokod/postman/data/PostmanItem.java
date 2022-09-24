@@ -2,11 +2,19 @@ package com.neokod.postman.data;
 
 import java.util.List;
 
-public class PostmanItem implements PostmanNamable{
+public class PostmanItem implements PostmanItemWithName {
 
     private String name;
 
-    private List<PostmanRequestItem> item;
+    private PostmanRequest request;
+
+    private List<PostmanResponse> response;
+
+    private Object event;
+
+    private Object protocolProfileBehavior;
+
+    private List<PostmanItem> item;
 
     public String getName() {
         return name;
@@ -16,11 +24,43 @@ public class PostmanItem implements PostmanNamable{
         this.name = name;
     }
 
-    public List<PostmanRequestItem> getItem() {
+    public PostmanRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(PostmanRequest request) {
+        this.request = request;
+    }
+
+    public Object getProtocolProfileBehavior() {
+        return protocolProfileBehavior;
+    }
+
+    public void setProtocolProfileBehavior(Object protocolProfileBehavior) {
+        this.protocolProfileBehavior = protocolProfileBehavior;
+    }
+
+    public List<PostmanResponse> getResponse() {
+        return response;
+    }
+
+    public void setResponse(List<PostmanResponse> response) {
+        this.response = response;
+    }
+
+    public Object getEvent() {
+        return event;
+    }
+
+    public void setEvent(Object event) {
+        this.event = event;
+    }
+
+    public List<PostmanItem> getItem() {
         return item;
     }
 
-    public void setItem(List<PostmanRequestItem> item) {
+    public void setItem(List<PostmanItem> item) {
         this.item = item;
     }
 }

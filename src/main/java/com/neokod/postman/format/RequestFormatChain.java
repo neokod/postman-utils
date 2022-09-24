@@ -1,6 +1,6 @@
 package com.neokod.postman.format;
 
-import com.neokod.postman.data.PostmanRequestItem;
+import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.env.PostmanEnvVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,7 @@ public class RequestFormatChain implements RequestItemFormat {
 
 
     @Override
-    public void format(PostmanRequestItem requestItem) {
+    public void format(PostmanItem requestItem) {
         if(requestItem.getRequest() == null) return;
 
         if(!CollectionUtils.isEmpty(requestItemValidatorList)) {

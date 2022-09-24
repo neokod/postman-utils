@@ -1,8 +1,8 @@
 package com.neokod.postman.format;
 
-import com.neokod.postman.data.PostmanRequestItem;
+import com.neokod.postman.data.PostmanItem;
 
 public interface RequestItemFormat {
 
-    void format(PostmanRequestItem requestItem);
+    void format(PostmanItem requestItem);
 }

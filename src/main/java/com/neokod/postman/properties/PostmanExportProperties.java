@@ -1,26 +1,52 @@
 package com.neokod.postman.properties;
 
+import com.neokod.postman.constant.FileVariableConstants;
 import com.neokod.postman.constant.PostmanUtilConstants;
-import com.neokod.postman.enums.EnumExportDetailStrategy;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = PostmanUtilConstants.EXPORT_PROPERTIES_PREFIX)
-public class PostmanExportProperties {
+public class PostmanExportProperties implements InitializingBean {
 
-    private EnumExportDetailStrategy responseSelection;
+    public static final String SUCCESS_ONLY_EXPORT_VALUE = "success";
 
-    private boolean useResponseNameInFile;
+    public static final String ALL_EXPORT_VALUE = "all";
+
+    private Boolean useResponseNameInFile;
+
+    private String responseExportType;
+
     private String basePath;
+
     private String fileNameSeparator;
 
-    public EnumExportDetailStrategy getResponseSelection() {
-        return responseSelection;
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (useResponseNameInFile == null)
+            useResponseNameInFile = false;
+        if(responseExportType == null)
+            responseExportType = SUCCESS_ONLY_EXPORT_VALUE;
+        if(fileNameSeparator == null)
+            fileNameSeparator = FileVariableConstants.DEFAULT_FILE_NAME_SEPARATOR;
+
     }
 
-    public void setResponseSelection(EnumExportDetailStrategy responseSelection) {
-        this.responseSelection = responseSelection;
+    public Boolean getUseResponseNameInFile() {
+        return useResponseNameInFile;
+    }
+
+    public void setUseResponseNameInFile(Boolean useResponseNameInFile) {
+        this.useResponseNameInFile = useResponseNameInFile;
+    }
+
+    public String getResponseExportType() {
+        return responseExportType;
+    }
+
+    public void setResponseExportType(String responseExportType) {
+        this.responseExportType = responseExportType;
     }
 
     public String getBasePath() {
@@ -37,13 +63,5 @@ public class PostmanExportProperties {
 
     public void setFileNameSeparator(String fileNameSeparator) {
         this.fileNameSeparator = fileNameSeparator;
-    }
-
-    public boolean isUseResponseNameInFile() {
-        return useResponseNameInFile;
-    }
-
-    public void setUseResponseNameInFile(boolean useResponseNameInFile) {
-        this.useResponseNameInFile = useResponseNameInFile;
     }
 }

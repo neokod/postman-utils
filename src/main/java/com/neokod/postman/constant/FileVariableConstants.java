@@ -24,5 +24,8 @@ public class FileVariableConstants {
 
     public static final String SUCCESS_RESPONSE_NAME = "success";
 
+    public static final String DEFAULT_FILE_NAME_SEPARATOR = "_";
+
+
 
 }

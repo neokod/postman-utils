@@ -1,7 +1,7 @@
 package com.neokod.postman.format;
 
 import com.neokod.postman.data.PostmanHeader;
-import com.neokod.postman.data.PostmanRequestItem;
+import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.data.PostmanUrl;
 import com.neokod.postman.env.PostmanEnvVariableManager;
 import org.springframework.util.CollectionUtils;
@@ -20,11 +20,11 @@ public class PostmanHeaderEnvVariableReplace implements RequestItemFormat {
     }
 
     @Override
-    public void format(PostmanRequestItem requestItem) {
+    public void format(PostmanItem postmanItem) {
         if (CollectionUtils.isEmpty(variableManager.keyValueMap())) return;
-        if (CollectionUtils.isEmpty(requestItem.getRequest().getHeader())) return;
+        if (CollectionUtils.isEmpty(postmanItem.getRequest().getHeader())) return;
 
-        for (PostmanHeader header : requestItem.getRequest().getHeader()) {
+        for (PostmanHeader header : postmanItem.getRequest().getHeader()) {
             String newValue = header.getValue().replaceAll("\\{\\{", "").replaceAll("\\}\\}", "");
             if(newValue.equals(header.getValue())) continue;
             for (Map.Entry<String, String> entry : variableManager.keyValueMap().entrySet()) {
