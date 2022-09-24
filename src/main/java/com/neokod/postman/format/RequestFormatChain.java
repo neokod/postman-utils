@@ -24,7 +24,7 @@ public class RequestFormatChain implements RequestItemFormat {
 
     private void initializeValidators() {
         requestItemValidatorList.add(new PostmanUrlEnvVariableReplace(variableManager));
-        requestItemValidatorList.add(new PostmanRequestVariableReplace());
+        // requestItemValidatorList.add(new PostmanRequestVariableReplace());
         requestItemValidatorList.add(new PostmanHeaderEnvVariableReplace(variableManager));
     }
 

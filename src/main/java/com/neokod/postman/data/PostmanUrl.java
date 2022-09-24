@@ -80,7 +80,6 @@ public final class PostmanUrl {
         for(String hostVal : host) {
             builder.append(hostVal).append("/");
         }
-        builder.delete(builder.lastIndexOf("/"), builder.length());
         for (String pathVal : path) {
             if (!pathVal.startsWith(":") && !NumberUtils.isCreatable(pathVal))
                 builder.append(pathVal).append("/");

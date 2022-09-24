@@ -21,7 +21,9 @@ logging:
 neokod:
   postman:
     parse:
-      filePath: /home/htemucin/einsan/2022_09_23_Yeka_V_1_0_0.json
+      filePath: /home/htemucin/einsan/2022_09_24_yeka_collection.json
+      selectedItems:
+        - jobposting
     environment:
       filePath: /home/htemucin/einsan_postman_environment.json
       values:
@@ -30,8 +32,9 @@ neokod:
       responseSelection: SUCCESS_ONLY
       basePath: /home/htemucin/einsan/yeka2
       fileNameSeparator: _
+      exportResponseHeader: true
       useResponseNameInFile: false
-
+      baseDirectoryExistPolicy: delete
 
 
 management:

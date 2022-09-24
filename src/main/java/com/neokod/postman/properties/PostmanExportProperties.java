@@ -14,7 +14,9 @@ public class PostmanExportProperties implements InitializingBean {
 
     public static final String ALL_EXPORT_VALUE = "all";
 
-    private Boolean useResponseNameInFile;
+    public static final String DELETE_BASE_DIRECTORY_VALUE = "delete";
+
+    public static final String FAIL_BASE_DIRECTORY_VALUE = "fail";
 
     private String responseExportType;
 
@@ -22,23 +24,20 @@ public class PostmanExportProperties implements InitializingBean {
 
     private String fileNameSeparator;
 
+    private Boolean exportResponseHeader;
+
+    private String baseDirectoryExistPolicy;
+
     @Override
-    public void afterPropertiesSet() throws Exception {
-        if (useResponseNameInFile == null)
-            useResponseNameInFile = false;
-        if(responseExportType == null)
+    public void afterPropertiesSet() {
+        if (responseExportType == null)
             responseExportType = SUCCESS_ONLY_EXPORT_VALUE;
-        if(fileNameSeparator == null)
+        if (fileNameSeparator == null)
             fileNameSeparator = FileVariableConstants.DEFAULT_FILE_NAME_SEPARATOR;
-
-    }
-
-    public Boolean getUseResponseNameInFile() {
-        return useResponseNameInFile;
-    }
-
-    public void setUseResponseNameInFile(Boolean useResponseNameInFile) {
-        this.useResponseNameInFile = useResponseNameInFile;
+        if (exportResponseHeader == null)
+            exportResponseHeader = false;
+        if (baseDirectoryExistPolicy == null)
+            baseDirectoryExistPolicy = FAIL_BASE_DIRECTORY_VALUE;
     }
 
     public String getResponseExportType() {
@@ -63,5 +62,21 @@ public class PostmanExportProperties implements InitializingBean {
 
     public void setFileNameSeparator(String fileNameSeparator) {
         this.fileNameSeparator = fileNameSeparator;
+    }
+
+    public Boolean getExportResponseHeader() {
+        return exportResponseHeader;
+    }
+
+    public void setExportResponseHeader(Boolean exportResponseHeader) {
+        this.exportResponseHeader = exportResponseHeader;
+    }
+
+    public String getBaseDirectoryExistPolicy() {
+        return baseDirectoryExistPolicy;
+    }
+
+    public void setBaseDirectoryExistPolicy(String baseDirectoryExistPolicy) {
+        this.baseDirectoryExistPolicy = baseDirectoryExistPolicy;
     }
 }

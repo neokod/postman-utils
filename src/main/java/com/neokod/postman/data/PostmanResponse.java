@@ -2,7 +2,7 @@ package com.neokod.postman.data;
 
 import java.util.List;
 
-public class PostmanResponse {
+public class PostmanResponse implements PostmanHttpPacket{
 
     private String name;
 
@@ -96,5 +96,22 @@ public class PostmanResponse {
 
     public void setCookie(Object cookie) {
         this.cookie = cookie;
+    }
+
+    @Override
+    public String method() {
+        if(originalRequest != null)
+            return originalRequest.method();
+        return "";
+    }
+
+    @Override
+    public List<PostmanHeader> headers() {
+        return header;
+    }
+
+    @Override
+    public String bodyPayloadAsString() {
+        return body;
     }
 }

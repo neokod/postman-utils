@@ -12,11 +12,21 @@ public class PostmanParsingProperties {
 
     private String filePath;
 
+    private List<String> selectedItems;
+
     public String getFilePath() {
         return filePath;
     }
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public List<String> getSelectedItems() {
+        return selectedItems;
+    }
+
+    public void setSelectedItems(List<String> selectedItems) {
+        this.selectedItems = selectedItems;
     }
 }

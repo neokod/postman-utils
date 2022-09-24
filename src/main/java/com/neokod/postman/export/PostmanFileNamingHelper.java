@@ -12,12 +12,12 @@ import java.util.Locale;
 import static com.neokod.postman.constant.FileVariableConstants.*;
 
 @Component
-public class PostmanFileNamingManager {
+public class PostmanFileNamingHelper {
 
     private final PostmanExportProperties exportProperties;
 
     @Autowired
-    public PostmanFileNamingManager(PostmanExportProperties exportProperties) {
+    public PostmanFileNamingHelper(PostmanExportProperties exportProperties) {
         this.exportProperties = exportProperties;
     }
 

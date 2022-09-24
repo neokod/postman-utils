@@ -5,6 +5,8 @@ import com.neokod.postman.data.PostmanResponse;
 import com.neokod.postman.data.PostmanUrl;
 import org.springframework.util.CollectionUtils;
 
+import static com.neokod.postman.constant.FileVariableConstants.*;
+
 public class PostmanFormatters {
 
     public static void formatAllUrlPartsOfRequest(PostmanItem requestItem, PostmanUrlFormatter urlFormatter) {
@@ -20,10 +22,13 @@ public class PostmanFormatters {
         }
     }
 
+    public static String cleanEnvVariablePattern(String rawVariableValue) {
+        return rawVariableValue.replaceAll(ENV_VARIABLE_PREFIX, "").replaceAll(ENV_VARIABLE_SUFFIX, "");
+    }
+
     public interface PostmanUrlFormatter {
         void format(PostmanUrl postmanUrl);
     }
-
 
 
 }

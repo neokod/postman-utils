@@ -2,7 +2,7 @@ package com.neokod.postman.data;
 
 import java.util.List;
 
-public class PostmanRequest {
+public class PostmanRequest implements PostmanHttpPacket{
 
     private String method;
 
@@ -52,6 +52,19 @@ public class PostmanRequest {
 
     public void setBody(RequestBody body) {
         this.body = body;
+    }
+
+    @Override
+    public String method() { return method; }
+
+    @Override
+    public List<PostmanHeader> headers() { return header; }
+
+    @Override
+    public String bodyPayloadAsString() {
+        if (getBody() != null && getBody().getRaw() != null && getBody().getRaw().equals(""))
+            return getBody().getRaw();
+        return "";
     }
 
     public static final class RequestBody {

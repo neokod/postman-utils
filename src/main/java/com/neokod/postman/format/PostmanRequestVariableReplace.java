@@ -19,7 +19,7 @@ public class PostmanRequestVariableReplace implements RequestItemFormat {
 
     private void formatUrl(PostmanUrl postmanUrl) {
         if (!CollectionUtils.isEmpty(postmanUrl.getVariable())) {
-            String formattedUrl = postmanUrl.getRaw();
+            String formattedUrl = postmanUrl.getRaw().replaceAll(":","");
             for (PostmanVariable variable : postmanUrl.getVariable()) {
                 formattedUrl = formattedUrl.replaceAll(variable.getKey(), variable.getValue());
             }

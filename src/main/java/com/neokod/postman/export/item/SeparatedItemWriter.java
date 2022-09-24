@@ -1,10 +1,11 @@
-package com.neokod.postman.export;
+package com.neokod.postman.export.item;
 
 import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.data.PostmanRequest;
 import com.neokod.postman.data.PostmanResponse;
 import com.neokod.postman.exception.PostmanRequestExportFailedException;
 import com.neokod.postman.exception.PostmanResponseExportFailedException;
+import com.neokod.postman.export.PostmanFileNamingHelper;
 import com.neokod.postman.properties.PostmanExportProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,23 +15,24 @@ import java.io.PrintWriter;
 
 import static com.neokod.postman.constant.FileVariableConstants.SUCCESS_RESPONSE_NAME;
 
-public class SeparatedWriter implements PostmanItemWriter {
+public class SeparatedItemWriter implements PostmanItemWriter {
 
 
-    private final Logger LOGGER = LoggerFactory.getLogger(SeparatedWriter.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(SeparatedItemWriter.class);
 
-    private final PostmanResponseExporter postmanResponseExporter = new PostmanResponseExporter();
+    private final PostmanResponseExporter postmanResponseExporter;
 
     private final PostmanRequestExporter postmanRequestExporter = new PostmanRequestExporter();
 
-    private final PostmanFileNamingManager postmanFileNamingManager;
+    private final PostmanFileNamingHelper postmanFileNamingHelper;
 
     private final PostmanExportProperties exportProperties;
 
-    public SeparatedWriter(PostmanFileNamingManager postmanFileNamingManager,
-                           PostmanExportProperties exportProperties) {
-        this.postmanFileNamingManager = postmanFileNamingManager;
+    public SeparatedItemWriter(PostmanFileNamingHelper postmanFileNamingHelper,
+                               PostmanExportProperties exportProperties) {
+        this.postmanFileNamingHelper = postmanFileNamingHelper;
         this.exportProperties = exportProperties;
+        this.postmanResponseExporter = new PostmanResponseExporter(exportProperties);
     }
 
     @Override
@@ -47,11 +49,11 @@ public class SeparatedWriter implements PostmanItemWriter {
     }
 
     private void writeRequestToFile(String directoryPath, String requestName, PostmanRequest postmanRequest) {
-        String requestFileToWritePath = directoryPath + "/" + postmanFileNamingManager.createRequestName(postmanRequest, requestName);
+        String requestFileToWritePath = directoryPath + "/" + postmanFileNamingHelper.createRequestName(postmanRequest, requestName);
         PrintWriter requestWriter;
         try {
             requestWriter = new PrintWriter(requestFileToWritePath);
-            requestWriter.append(postmanRequestExporter.export(postmanRequest));
+            postmanRequestExporter.export(requestWriter, postmanRequest);
             requestWriter.close();
         } catch (FileNotFoundException e) {
             LOGGER.error(e.getMessage());
@@ -61,11 +63,11 @@ public class SeparatedWriter implements PostmanItemWriter {
     }
 
     private void writeResponseToFile(String directoryPath, PostmanResponse response) {
-        String responseFileToWritePath = directoryPath + "/" + postmanFileNamingManager.createResponseName(response);
+        String responseFileToWritePath = directoryPath + "/" + postmanFileNamingHelper.createResponseName(response);
         try {
-            PrintWriter printWriter = new PrintWriter(responseFileToWritePath);
-            printWriter.append(postmanResponseExporter.export(response));
-            printWriter.close();
+            PrintWriter responseWriter = new PrintWriter(responseFileToWritePath);
+            postmanResponseExporter.export(responseWriter, response);
+            responseWriter.close();
         } catch (FileNotFoundException e) {
             throw new PostmanResponseExportFailedException("File not found: " + responseFileToWritePath);
         }

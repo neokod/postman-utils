@@ -29,20 +29,18 @@ public class PostmanUrlEnvVariableReplace implements RequestItemFormat {
 
     private void formatUrl(PostmanUrl postmanUrl) {
         if (!CollectionUtils.isEmpty(variableManager.keyValueMap())) {
-            String formattedUrl = postmanUrl.getRaw();
+            String formattedUrl = PostmanFormatters.cleanEnvVariablePattern(postmanUrl.getRaw());
 
             for (Map.Entry<String, String> entry : variableManager.keyValueMap().entrySet()) {
-                formattedUrl = formattedUrl.replaceAll(ENV_VARIABLE_PREFIX + entry.getKey() + ENV_VARIABLE_SUFFIX, entry.getValue());
+                formattedUrl = formattedUrl.replaceAll(entry.getKey(), entry.getValue());
             }
             List<String> formattedHostList = new ArrayList<>();
             for (String host : postmanUrl.getHost()) {
+                String formattedHost = PostmanFormatters.cleanEnvVariablePattern(host);
                 for (Map.Entry<String, String> entry : variableManager.keyValueMap().entrySet()) {
-                    if (host.contains(ENV_VARIABLE_PREFIX + entry.getKey() + ENV_VARIABLE_SUFFIX)) {
-                        formattedHostList.add(host.replaceAll(ENV_VARIABLE_PREFIX + entry.getKey() + ENV_VARIABLE_SUFFIX, entry.getValue()));
-                    } else {
-                        formattedHostList.add(host);
-                    }
+                    formattedHost = formattedHost.replaceAll(entry.getKey(), entry.getValue());
                 }
+                formattedHostList.add(formattedHost);
             }
 
             postmanUrl.setRaw(formattedUrl);

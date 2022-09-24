@@ -1,4 +1,4 @@
-package com.neokod.postman.export;
+package com.neokod.postman.export.item;
 
 import com.neokod.postman.data.PostmanItem;
 

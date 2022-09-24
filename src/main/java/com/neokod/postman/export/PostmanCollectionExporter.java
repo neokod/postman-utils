@@ -4,6 +4,7 @@ import com.neokod.postman.context.PostmanContextHolder;
 import com.neokod.postman.data.PostmanCollection;
 import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.exception.BaseDirectoryIsNotEmptyException;
+import com.neokod.postman.export.item.PostmanItemWriter;
 import com.neokod.postman.properties.PostmanExportProperties;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -37,17 +38,6 @@ public class PostmanCollectionExporter {
 
     public void exportToPath() {
         PostmanCollection postmanCollection = PostmanContextHolder.getContext().getCollection();
-        File baseFile = new File(exportProperties.getBasePath());
-        if (!baseFile.exists()) {
-            baseFile.mkdir();
-        }
-        try {
-            if (!FileUtils.isEmptyDirectory(baseFile)) {
-                throw new BaseDirectoryIsNotEmptyException();
-            }
-        } catch (IOException ioException) {
-            LOGGER.error("Base file creation is failed: " + ioException.getMessage());
-        }
         if (CollectionUtils.isEmpty(postmanCollection.getItem())) return;
 
         for (PostmanItem item : postmanCollection.getItem()) {
