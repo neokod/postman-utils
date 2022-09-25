@@ -1,4 +1,4 @@
-package com.neokod.postman.format;
+package com.neokod.postman.filter;
 
 import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.data.PostmanResponse;
@@ -6,13 +6,13 @@ import com.neokod.postman.data.PostmanUrl;
 import com.neokod.postman.data.PostmanVariable;
 import org.springframework.util.CollectionUtils;
 
-public class PostmanPostmanVariableReplace implements PostmanItemFormat {
+public class PostmanPostmanVariableReplace implements PostmanItemFilter {
 
     public PostmanPostmanVariableReplace() {
     }
 
     @Override
-    public void format(PostmanItem postmanItem) {
+    public void filter(PostmanItem postmanItem) {
         if (!CollectionUtils.isEmpty(postmanItem.getResponse())) {
             for (PostmanResponse response : postmanItem.getResponse()) {
                 if (response.getOriginalRequest() != null && response.getOriginalRequest().getUrl() != null)

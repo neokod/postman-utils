@@ -9,6 +9,14 @@ public class PostmanVariable implements PostmanKeyValuePair{
 
     private String value;
 
+    public PostmanVariable() {
+    }
+
+    public PostmanVariable(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
     public String getKey() {
         return key;
     }

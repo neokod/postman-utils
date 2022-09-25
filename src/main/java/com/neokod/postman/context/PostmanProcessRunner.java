@@ -6,7 +6,7 @@ import com.neokod.postman.env.PostmanEnvVariableManager;
 import com.neokod.postman.exception.BaseDirectoryIOException;
 import com.neokod.postman.exception.BaseDirectoryIsNotEmptyException;
 import com.neokod.postman.export.PostmanCollectionExporter;
-import com.neokod.postman.format.PostmanFormatter;
+import com.neokod.postman.filter.PostmanFilterChain;
 import com.neokod.postman.parse.PostmanCollectionItemSelector;
 import com.neokod.postman.parse.PostmanCollectionParser;
 import com.neokod.postman.parse.PostmanEnvironmentParser;
@@ -31,7 +31,7 @@ public class PostmanProcessRunner {
 
     private final PostmanEnvironmentParser postmanEnvironmentParser;
 
-    private final PostmanFormatter postmanFormatter;
+    private final PostmanFilterChain postmanFilterChain;
 
     private final PostmanCollectionExporter postmanCollectionExporter;
 
@@ -47,7 +47,7 @@ public class PostmanProcessRunner {
     public PostmanProcessRunner(PostmanCollectionParser postmanCollectionParser,
                                 PostmanCollectionItemSelector postmanCollectionItemSelector,
                                 PostmanEnvironmentParser postmanEnvironmentParser,
-                                PostmanFormatter postmanFormatter,
+                                PostmanFilterChain postmanFilterChain,
                                 PostmanCollectionExporter postmanCollectionExporter,
                                 PostmanEnvVariableManager postmanEnvVariableManager,
                                 PostmanParsingProperties collectionProperties,
@@ -55,7 +55,7 @@ public class PostmanProcessRunner {
         this.postmanCollectionParser = postmanCollectionParser;
         this.postmanCollectionItemSelector = postmanCollectionItemSelector;
         this.postmanEnvironmentParser = postmanEnvironmentParser;
-        this.postmanFormatter = postmanFormatter;
+        this.postmanFilterChain = postmanFilterChain;
         this.postmanCollectionExporter = postmanCollectionExporter;
         this.postmanEnvVariableManager = postmanEnvVariableManager;
         this.collectionProperties = collectionProperties;
@@ -78,8 +78,8 @@ public class PostmanProcessRunner {
         }
         LOGGER.info("Postman Collection selected item count : " + collection.getItem().size());
 
-        LOGGER.info("Postman re-formatting process is started...");
-        postmanFormatter.format();
+        LOGGER.info("Postman collection items filtering process is started...");
+        postmanFilterChain.filterAll();
 
 
         LOGGER.info("Postman collection writing process is started...Write path: " + exportProperties.getBasePath());

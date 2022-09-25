@@ -25,18 +25,19 @@ public class PostmanEnvVariableManager {
 
     public void initialize() {
         final PostmanEnvironment environment = PostmanContextHolder.getContext().getEnvironment();
-        if(!CollectionUtils.isEmpty(environment.getValues())) {
-            for(PostmanVariable variable : environment.getValues()) {
+        if (!CollectionUtils.isEmpty(environment.getValues())) {
+            for (PostmanVariable variable : environment.getValues()) {
                 postmanVariableKeyValueMap.put(variable.getKey(), variable.getValue());
             }
         }
-        if(!CollectionUtils.isEmpty(environmentProperties.getOtherVariables())) {
-            for(String value : environmentProperties.getOtherVariables()) {
-                String[] keyValuePair = value.split(",");
-                postmanVariableKeyValueMap.put(keyValuePair[0], keyValuePair[1]);
+        if (!CollectionUtils.isEmpty(environmentProperties.getPostmanVariableList())) {
+            for (PostmanVariable postmanVariable : environmentProperties.getPostmanVariableList()) {
+                postmanVariableKeyValueMap.put(postmanVariable.getKey(), postmanVariable.getValue());
             }
         }
     }
 
-    public Map<String, String> keyValueMap() { return postmanVariableKeyValueMap; }
+    public Map<String, String> keyValueMap() {
+        return postmanVariableKeyValueMap;
+    }
 }

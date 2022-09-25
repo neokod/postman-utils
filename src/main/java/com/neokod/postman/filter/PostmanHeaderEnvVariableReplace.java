@@ -1,4 +1,4 @@
-package com.neokod.postman.format;
+package com.neokod.postman.filter;
 
 import com.neokod.postman.data.PostmanHeader;
 import com.neokod.postman.data.PostmanItem;
@@ -11,7 +11,7 @@ import java.util.Map;
 import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_PREFIX;
 import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_SUFFIX;
 
-public class PostmanHeaderEnvVariableReplace implements PostmanItemFormat {
+public class PostmanHeaderEnvVariableReplace implements PostmanItemFilter {
 
     private final PostmanEnvVariableManager variableManager;
 
@@ -20,7 +20,7 @@ public class PostmanHeaderEnvVariableReplace implements PostmanItemFormat {
     }
 
     @Override
-    public void format(PostmanItem postmanItem) {
+    public void filter(PostmanItem postmanItem) {
         if (CollectionUtils.isEmpty(variableManager.keyValueMap())) return;
         if (CollectionUtils.isEmpty(postmanItem.getRequest().getHeader())) return;
 

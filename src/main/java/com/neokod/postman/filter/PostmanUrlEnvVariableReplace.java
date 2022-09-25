@@ -1,4 +1,4 @@
-package com.neokod.postman.format;
+package com.neokod.postman.filter;
 
 import com.neokod.postman.data.PostmanItem;
 import com.neokod.postman.data.PostmanUrl;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class PostmanUrlEnvVariableReplace implements PostmanItemFormat {
+public class PostmanUrlEnvVariableReplace implements PostmanItemFilter {
 
     private final PostmanEnvVariableManager variableManager;
 
@@ -19,7 +19,7 @@ public class PostmanUrlEnvVariableReplace implements PostmanItemFormat {
     }
 
     @Override
-    public void format(PostmanItem requestItem) {
+    public void filter(PostmanItem requestItem) {
         PostmanFormatters.formatAllUrlPartsOfRequest(requestItem, this::formatUrl);
 
     }

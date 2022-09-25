@@ -24,17 +24,19 @@ neokod:
       filePath: /home/htemucin/einsan/postmans/2022_09_25_KKWebNetCoreAPI_v_1_0_0.json
     environment:
       filePath: /home/htemucin/einsan/postmans/einsan_postman_environment.json
-      values:
-        - baseUrl : api.einsan.org
+      variable:
+        - baseUrl | api.einsan.org
     export:
       responseSelection: SUCCESS_ONLY
       basePath: /home/htemucin/einsan/request-response/kk
       fileNameSeparator: _
       exportResponseHeader: false
       useResponseNameInFile: false
-      baseDirectoryExistPolicy: fail
-
-
+      baseDirectoryExistPolicy: delete
+    request:
+      header:
+        - Host | www.einsan.org
+        - Accept | application/json
 management:
   endpoint:
     health:
