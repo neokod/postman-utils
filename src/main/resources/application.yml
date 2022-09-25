@@ -21,20 +21,18 @@ logging:
 neokod:
   postman:
     parse:
-      filePath: /home/htemucin/einsan/2022_09_24_yeka_collection.json
-      selectedItems:
-        - jobposting
+      filePath: /home/htemucin/einsan/postmans/2022_09_25_KKWebNetCoreAPI_v_1_0_0.json
     environment:
-      filePath: /home/htemucin/einsan_postman_environment.json
+      filePath: /home/htemucin/einsan/postmans/einsan_postman_environment.json
       values:
         - baseUrl : api.einsan.org
     export:
       responseSelection: SUCCESS_ONLY
-      basePath: /home/htemucin/einsan/yeka2
+      basePath: /home/htemucin/einsan/request-response/kk
       fileNameSeparator: _
-      exportResponseHeader: true
+      exportResponseHeader: false
       useResponseNameInFile: false
-      baseDirectoryExistPolicy: delete
+      baseDirectoryExistPolicy: fail
 
 
 management:

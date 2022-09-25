@@ -11,7 +11,7 @@ import java.util.Map;
 import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_PREFIX;
 import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_SUFFIX;
 
-public class PostmanHeaderEnvVariableReplace implements RequestItemFormat {
+public class PostmanHeaderEnvVariableReplace implements PostmanItemFormat {
 
     private final PostmanEnvVariableManager variableManager;
 

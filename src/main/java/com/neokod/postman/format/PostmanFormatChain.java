@@ -10,22 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class RequestFormatChain implements RequestItemFormat {
+public class PostmanFormatChain implements PostmanItemFormat {
 
     private final PostmanEnvVariableManager variableManager;
 
-    private final List<RequestItemFormat> requestItemValidatorList = new ArrayList<>();
+    private final List<PostmanItemFormat> requestItemValidatorList = new ArrayList<>();
 
     @Autowired
-    public RequestFormatChain(PostmanEnvVariableManager variableManager) {
+    public PostmanFormatChain(PostmanEnvVariableManager variableManager) {
         this.variableManager = variableManager;
         initializeValidators();
     }
 
     private void initializeValidators() {
         requestItemValidatorList.add(new PostmanUrlEnvVariableReplace(variableManager));
-        // requestItemValidatorList.add(new PostmanRequestVariableReplace());
         requestItemValidatorList.add(new PostmanHeaderEnvVariableReplace(variableManager));
+        requestItemValidatorList.add(new PostmanPostmanVariableReplace());
     }
 
 

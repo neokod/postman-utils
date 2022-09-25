@@ -9,4 +9,6 @@ public interface PostmanHttpPacket {
     List<PostmanHeader> headers();
 
     String bodyPayloadAsString();
+
+    Boolean hasBody();
 }

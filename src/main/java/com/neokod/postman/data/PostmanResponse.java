@@ -1,8 +1,10 @@
 package com.neokod.postman.data;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
-public class PostmanResponse implements PostmanHttpPacket{
+public class PostmanResponse implements PostmanHttpPacket {
 
     private String name;
 
@@ -100,7 +102,7 @@ public class PostmanResponse implements PostmanHttpPacket{
 
     @Override
     public String method() {
-        if(originalRequest != null)
+        if (originalRequest != null)
             return originalRequest.method();
         return "";
     }
@@ -113,5 +115,10 @@ public class PostmanResponse implements PostmanHttpPacket{
     @Override
     public String bodyPayloadAsString() {
         return body;
+    }
+
+    @Override
+    public Boolean hasBody() {
+        return !StringUtils.isEmpty(body);
     }
 }

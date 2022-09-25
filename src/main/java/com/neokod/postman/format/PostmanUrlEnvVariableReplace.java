@@ -10,10 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_PREFIX;
-import static com.neokod.postman.constant.FileVariableConstants.ENV_VARIABLE_SUFFIX;
-
-public class PostmanUrlEnvVariableReplace implements RequestItemFormat {
+public class PostmanUrlEnvVariableReplace implements PostmanItemFormat {
 
     private final PostmanEnvVariableManager variableManager;
 

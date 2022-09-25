@@ -1,5 +1,7 @@
 package com.neokod.postman.data;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 public class PostmanRequest implements PostmanHttpPacket{
@@ -62,9 +64,12 @@ public class PostmanRequest implements PostmanHttpPacket{
 
     @Override
     public String bodyPayloadAsString() {
-        if (getBody() != null && getBody().getRaw() != null && getBody().getRaw().equals(""))
-            return getBody().getRaw();
-        return "";
+        return getBody().getRaw();
+    }
+
+    @Override
+    public Boolean hasBody() {
+        return (getBody() != null && !StringUtils.isEmpty(getBody().getRaw()));
     }
 
     public static final class RequestBody {

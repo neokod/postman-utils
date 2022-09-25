@@ -10,10 +10,10 @@ import org.springframework.util.CollectionUtils;
 @Component
 public class PostmanFormatter {
 
-    private final RequestFormatChain formatChain;
+    private final PostmanFormatChain formatChain;
 
     @Autowired
-    public PostmanFormatter(RequestFormatChain formatChain) {
+    public PostmanFormatter(PostmanFormatChain formatChain) {
         this.formatChain = formatChain;
     }
 
