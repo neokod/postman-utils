@@ -3,39 +3,30 @@ server:
   servlet:
     context-path: ${SERVER_CONTEXT_PATH:}
 
-logging:
-  level:
-    org:
-      springframework:
-        jms: INFO
-        context: DEBUG
-        web: INFO
-        security: INFO
-        kafka: INFO
-      hibernate:
-        SQL: DEBUG
-        type: trace
-      apache:
-        kafka:
-          clients: WARN
 neokod:
   postman:
     parse:
-      filePath: /home/htemucin/einsan/postmans/2022_09_25_KKWebNetCoreAPI_v_1_0_0.json
+      filePath: /home/htemucin/einsan/postmans/2022_09_29_EInsanLogServer.postman_collection_v2.json
+      #selectedItems:
+      #  - authentication
+      #  - user
+      #  - user-register
     environment:
-      filePath: /home/htemucin/einsan/postmans/einsan_postman_environment.json
+      filePath: /home/htemucin/einsan/postmans/einsan-test-dev.postman_environment.json
       variable:
         - baseUrl | api.einsan.org
+        - KK_API_URL | https://api.einsan.org/kk
+        - YTNK_API_URL | https://api.einsan.org/ytnk
     export:
       responseSelection: SUCCESS_ONLY
-      basePath: /home/htemucin/einsan/request-response/kk
+      basePath: /home/htemucin/einsan/request-response/einsan-log
       fileNameSeparator: _
       exportResponseHeader: false
       useResponseNameInFile: false
       baseDirectoryExistPolicy: delete
     request:
       header:
-        - Host | www.einsan.org
+        - Host | apitest.einsan.org
         - Accept | application/json
 management:
   endpoint:
